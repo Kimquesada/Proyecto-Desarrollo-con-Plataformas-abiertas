@@ -89,6 +89,10 @@ DELETE FROM prenda WHERE `prenda`.`ID_Prenda` = 3
 UPDATE prenda SET stock = 25 WHERE ID_Prenda = 2;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 131a712dc4ce9ef986fa96fd108e298540b7dc45
 -- Obtener la cantidad vendida de prendas por fecha específica
 SELECT P.Tipo_de_prenda, SUM(DV.Cantidad) AS Cantidad_vendida, V.Fecha_venta
 FROM Detalle_Venta DV
@@ -98,6 +102,7 @@ WHERE DATE(V.Fecha_venta) = '2024-10-08'  -- Filtrar por la fecha que desees
 GROUP BY P.Tipo_de_prenda, V.Fecha_venta;
 
 
+<<<<<<< HEAD
 -- Crear vista para obtener todas las marcas que tienen al menos una venta
 CREATE VIEW MarcasConVentas AS
 SELECT M.Nombre, SUM(DV.Cantidad) AS Cantidad_vendida
@@ -106,6 +111,15 @@ JOIN Prenda P ON M.ID_Marca = P.ID_Marca
 JOIN Detalle_Venta DV ON P.ID_Prenda = DV.ID_prenda
 GROUP BY M.Nombre
 HAVING SUM(DV.Cantidad) > 0;
+=======
+
+-- Crear vista para obtener todas las marcas que tienen al menos una venta
+CREATE VIEW MarcasConVentas AS
+SELECT DISTINCT M.Nombre
+FROM Marca M
+JOIN Prenda P ON M.ID_Marca = P.ID_Marca
+JOIN Detalle_Venta DV ON P.ID_Prenda = DV.ID_prenda;
+>>>>>>> 131a712dc4ce9ef986fa96fd108e298540b7dc45
 
 
 -- Crear vista para obtener las prendas vendidas y su cantidad restante en stock
